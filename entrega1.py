@@ -7,7 +7,6 @@ hacer funcion de loguin de usuarios
 users = {'lautaro': '123456', 'matias': '123456'}
 
 
-
 def createUser():
   username = input("Ingrese su nombre de usuario: ")
   password = input("Ingrese su contrasenia: ")
