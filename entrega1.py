@@ -6,7 +6,6 @@ hacer funcion de loguin de usuarios
 
 users = {'lautaro': '123456', 'matias': '123456'}
 
-
 def createUser():
   username = input("Ingrese su nombre de usuario: ")
   password = input("Ingrese su contrasenia: ")
@@ -17,54 +16,45 @@ def seeUsers():
   print(users)
 
 def login(username, password):
-  contador = 1
-  while (not username in users):
-    if(contador < 3): 
-      print("Usuario o contrasenia incorrectos, por favor ingreselos de nuevo 1: ")
-      username = input("Ingrese su nombre de usuario: ")
-      password = input("Ingrese su contrasenia: ")
-      contador += 1
-    else:
-      print('HOLA')
-      return False
-  else:
-    if users[username] != password:
-      print("Usuario o contrasenia incorrectos, por favor ingreselos de nuevo 2: ")
-      username = input("Ingrese su nombre de usuario: ")
-      password = input("Ingrese su contrasenia: ")
-      contador += 1
+  attempts = 3
+  while attempts > 0:
+    if username not in users or users[username] != password:
+       print("Usuario o contraseña incorrectos.")
+       attempts -= 1
+       if attempts == 0:
+        print("Has excedido el número de intentos permitidos.")
+        return False
+       username = input("Ingrese su nombre de usuario: ")
+       password = input("Ingrese su contraseña: ")
     else:
       return True
     
 
 
-
 def main():
-  opcion = 0
-  while(opcion != 4):
-    print("Ingrese 1 para agregar un usuario")
-    print("Ingrese 2 para ver los usuarios")
-    print("Ingrese 3 para loguearse")
-    print("Ingrese 4 para finalizar")
-    opcion = int(input("Ingrese la opcion seleccionada: "))
-    if(opcion == 1):
+  opcion = ''
+  while(opcion != 'd'):
+    print("Seleccione A para agregar un usuario\nSeleccione B para ver los usuarios\nSeleccione C para loguearse\nSeleccione D para finalizar")
+    opcion = input("Ingrese la opcion seleccionada: ").capitalize()
+
+    if(opcion == 'A'):
       createUser()
-    elif(opcion == 2):
+    elif(opcion == 'B'):
       seeUsers()
-    elif(opcion == 3):
+    elif(opcion == 'C'):
       username = input("Ingrese su nombre de usuario: ")
       password = input("Ingrese su contrasenia: ")
-      loginOk = login(username, password)
-      if not loginOk:
+      if not login(username, password):
         print("Credenciales invalidas, cerrando ejecucion")
         break
       else :
         print("Logueo completo!")
         break
-    elif(opcion == 4):
+    elif(opcion == 'D'):
       print("Hasta pronto!")
       break
-
+    else:
+      print("Opcion invalida, por favor ingrese una correcta")
 
 
 main()
