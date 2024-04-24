@@ -1,19 +1,14 @@
-""" registro de usuario
-usuario: nombre y contrasenia
-almacenado en diccionario 
-hacer funcion de loguin de usuarios
-""" 
+users = {'lautaro': '123456', 'matias': '257983'}
 
-users = {'lautaro': '123456', 'matias': '123456'}
-
-def createUser():
+def create_user():
   username = input("Ingrese su nombre de usuario: ")
   password = input("Ingrese su contrasenia: ")
   users[username] = password
   print("Usuario guardado con exito")
 
-def seeUsers():
-  print(users)
+def see_users():
+  for user, password in users.items():
+    print(f"Usuario: {user}, password: {password}")
 
 def login(username, password):
   attempts = 3
@@ -38,9 +33,9 @@ def main():
     opcion = input("Ingrese la opcion seleccionada: ").capitalize()
 
     if(opcion == 'A'):
-      createUser()
+      create_user()
     elif(opcion == 'B'):
-      seeUsers()
+      see_users()
     elif(opcion == 'C'):
       username = input("Ingrese su nombre de usuario: ")
       password = input("Ingrese su contrasenia: ")
